@@ -47,5 +47,5 @@ if __name__ == "__main__":
             rfc_track.follow(int(nb), max_depth)
         if download or combine:
             print("")
-            rfc_download.download(int(nb), "./data/downloads/")
+            rfc_download.download(int(nb), "../data/downloads/")
         print("")

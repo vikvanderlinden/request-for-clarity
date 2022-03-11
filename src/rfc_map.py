@@ -1,5 +1,5 @@
 import re
-import json
+import file
 import requests
 
 RFC_INDEX_URL = "https://www.rfc-editor.org/rfc-index.txt"
@@ -11,16 +11,12 @@ def fetch_index():
         print(f"Downloading RFC index failed with status: {r.status_code}")
         return False
 
-    with open("./data/rfc-index.txt", "wb") as index_file:
-        index_file.write(r.content)
+    file.write_binary("../data/", "rfc-index.txt", r.content)
 
     return True
 
 def create():
-    content = None
-
-    with open("data/rfc-index.txt", 'r') as index:
-        content = index.read()
+    content = file.read("../data/rfc-index.txt")
 
     list_start = content.find("\n\n\n")
 
@@ -53,5 +49,4 @@ def create():
             "updated_by": updated_by[0].split(", ") if updated_by else [],
         }
 
-    with open("data/map.json", "w+") as outmap:
-        outmap.write(json.dumps(processed_rfcs))
+    file.write_json("../data/map.json", processed_rfcs)

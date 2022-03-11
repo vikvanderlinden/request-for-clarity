@@ -1,6 +1,7 @@
 import rfc_track
 import requests
 import re
+import file
 
 URL = "https://www.rfc-editor.org/rfc/pdfrfc/rfc"
 EXTENSION = ".txt.pdf"
@@ -17,8 +18,7 @@ def download(number, filepath):
         print(f"Error downloading file: status {r.status_code}")
         return
 
-    with open(f"{filepath}{pdf_filename}", "wb") as f:
-        f.write(r.content)
+    file.write_binary(filepath, pdf_filename, r.content)
 
     print(f"File downloaded as {pdf_filename}")
 

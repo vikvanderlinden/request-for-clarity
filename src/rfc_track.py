@@ -1,13 +1,10 @@
-import json
+import file
 
 already_printed = set()
 global print_list
 
 def get_title(number):
-    rfc_map = None
-
-    with open("data/map.json", 'r') as mapfile:
-        rfc_map = json.loads(mapfile.read())
+    rfc_map = file.read_json("../data/map.json")
 
     if rfc_map is None:
         return False
@@ -43,10 +40,7 @@ def _search_map(mode, number, depth=0, type=">", max_depth=None):
     if max_depth is not None and depth > max_depth:
         return
 
-    rfc_map = None
-
-    with open("data/map.json", 'r') as mapfile:
-        rfc_map = json.loads(mapfile.read())
+    rfc_map = file.read_json("../data/map.json")
 
     rfc = rfc_map.get(str(number), False)
     if rfc:
