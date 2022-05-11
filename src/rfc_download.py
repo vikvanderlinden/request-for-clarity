@@ -9,7 +9,7 @@ EXTENSION = ".txt.pdf"
 
 def download(number, filepath):
     title = rfc_track.get_title(number)
-    pdf_filename = f"{number}_{_transform_title(title)}.pdf"
+    pdf_filename = f"{str(number).rjust(4, '0')}_{_transform_title(title)}.pdf"
 
     url = f"{URL}{number}{EXTENSION}"
     r = requests.get(url, stream=True)
