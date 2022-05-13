@@ -3,7 +3,7 @@ import rfc_track
 import rfc_download
 
 
-if __name__ == "__main__":
+def run():
     print("Initializing...")
     rfc_map.fetch_index()
     print("  Index fetched")
@@ -47,5 +47,12 @@ if __name__ == "__main__":
             rfc_track.follow(int(nb), max_depth)
         if download or combine:
             print("")
-            rfc_download.download(int(nb), "../data/downloads/")
+            rfc_download.download(int(nb), "../data/papers/rfc/")
         print("")
+
+
+if __name__ == "__main__":
+    try:
+        run()
+    except KeyboardInterrupt:
+        print("\n\n>> Bye\n")
