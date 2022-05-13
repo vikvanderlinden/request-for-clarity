@@ -25,6 +25,8 @@ def download(number, filepath):
 def _transform_title(title):
     title = re.sub(": ", "_", title)
     title = re.sub(" ", "-", title)
-    title = re.sub("[^a-zA-Z\d\-_]", "", title)
+    title = re.sub("\/", "-", title)
+    title = re.sub("[\-]+", "-", title)
+    title = re.sub("[^a-zA-Z\d\-_\.]", "", title)
 
     return title.lower()
